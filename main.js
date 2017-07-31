@@ -123,14 +123,16 @@ function createDiceMessage(sides,rerollCount)
   var msgText = "";
   msgText += (sides+'-sided die (D'+sides+') roll:'+'\n');
   msgText += roll(sides)+'\n';
-  if(rerollCount > 0)
+  //decided to put the reroll count on the button in favor of visibility.
+  /*if(rerollCount > 0)
   {
     msgText += "(Re-rolled "+rerollCount+" times)\n";
-  }
+  }*/
 
   var buttons = [];
   var firstRow = [];
-  firstRow.push(createInlineKeyboardButton("Roll Again",'{"reroll":'+sides+',"rerollCount":'+rerollCount+'}'));
+  var buttonText = (rerollCount > 0 ? "Roll Again ("+rerollCount+")" : "Roll Again");
+  firstRow.push(createInlineKeyboardButton(buttonText,'{"reroll":'+sides+',"rerollCount":'+rerollCount+'}'));
   buttons.push(firstRow);
 
   var replyMarkup = createInlineKeyboardMarkup(buttons);
